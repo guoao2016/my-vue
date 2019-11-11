@@ -1,0 +1,36 @@
+<template>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+      <!-- <button v-if="$store.state.isLogin" @click="logout">注销</button> -->
+      <button v-if="isLogin" @click="logoutFun">注销</button>
+    </div>
+    <router-view/>
+  </div>
+</template> 
+<script>
+import {mapState, mapActions} from 'vuex'
+export default {
+  computed: {
+    ...mapState(['isLogin'])
+  },
+  methods: {
+    ...mapActions(['logout']),
+    logoutFun(){
+      // this.$store.dispatch('logout')
+      this.logout();
+      this.$router.push({path: '/login'})
+    }
+  }
+}
+</script>
+<style lang="stylus">
+#app
+  font-family 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  text-align center
+  color #2c3e50
+  margin-top 60px
+</style>

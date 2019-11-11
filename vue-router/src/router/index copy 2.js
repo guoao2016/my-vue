@@ -9,6 +9,7 @@ import Test from '../views/Test'
 Vue.use(Router)
 
 const routes = [
+  // 重定向
   {
     path: '/',
     redirect: '/a'
