@@ -136,3 +136,7 @@ export default {
         head: type, 
         payload: json
         hash: 
+
+
+### vue服务端渲染ssr
+
