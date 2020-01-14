@@ -1,3 +1,6 @@
+[Vue.js最佳实践](https://segmentfault.com/a/1190000014085613)_
+
+
 vue --version 
 vue create element-form
 vue add element
@@ -139,4 +142,37 @@ export default {
 
 
 ### vue服务端渲染ssr
+
+
+### watch
+methods: {
+    fetchList(){
+        return list;
+    }
+}
+watch: {
+  a: function (val, oldVal) {
+    console.log('new a: %s, old: %s', val, oldVal)
+  },
+  
+  // 方法名
+  b: 'someMethod',
+  
+  // 深度 watcher
+  c: {
+    handler: function (val, oldVal) {
+      console.log('new c: %s, old: %s', val, oldVal)
+    },
+    deep: true
+  },
+  
+  // 该回调将会在侦听开始之后被立即调用
+  // 进入页面之前调用一次，监听项改变调用一次
+  d: {
+    //handler: function (val, oldVal) {
+    //  console.log('new d: %s, old: %s', val, oldVal)
+    //},
+    handler: 'fetchList',
+    immediate: true
+  }
 
