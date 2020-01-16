@@ -1,5 +1,11 @@
 [Vue.js最佳实践](https://segmentfault.com/a/1190000014085613)_
+[目录结构](https://blog.csdn.net/Mean_/article/details/88820844)
 
+[组件](https://segmentfault.com/a/1190000020781076?utm_source=tag-newest)
+[data](https://www.cnblogs.com/DreamchaserHe/p/11765381.html)
+[源码解析](https://segmentfault.com/a/1190000015846104)
+
+[面试](https://segmentfault.com/a/1190000021407782)
 
 vue --version 
 vue create element-form
@@ -7,6 +13,24 @@ vue add element
 
 vue add router
 
+
+### Object.defineProperty
+    [Object.defineProperty](https://www.cnblogs.com/ajianbeyourself/p/8962813.html)
+    let hero = {}
+    let val = 3000
+    Object.defineProperty(hero, 'health', {
+      get () {
+        console.log('我的health属性被读取了！')
+        return val
+      },
+      set (newVal) {
+        console.log('我的health属性被修改了！')
+        val = newVal
+      }
+    })
+    
+    // hero.health
+    // hero.health = 1
 
 ### 原理
     new Vue
