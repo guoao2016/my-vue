@@ -200,3 +200,17 @@ watch: {
     immediate: true
   }
 
+### vue debounce
+
+`
+    <Input  @on-change="inputChange"></Input>
+    searchFund() {
+        this.getData()
+    }
+
+    searchFundDebounce:_.debounce(function() {this.searchFund ()}, 200),
+
+    inputChange() {
+        this.searchFundDebounce();
+    },
+`
