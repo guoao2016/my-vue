@@ -1,3 +1,12 @@
+[Vue.js最佳实践](https://segmentfault.com/a/1190000014085613)_
+[目录结构](https://blog.csdn.net/Mean_/article/details/88820844)
+
+[组件](https://segmentfault.com/a/1190000020781076?utm_source=tag-newest)
+[data](https://www.cnblogs.com/DreamchaserHe/p/11765381.html)
+[源码解析](https://segmentfault.com/a/1190000015846104)
+
+[面试](https://segmentfault.com/a/1190000021407782)
+
 vue --version 
 
 // 创建项目 vu/cli
@@ -10,6 +19,23 @@ vue add element
 vue add router
 
 
+### Object.defineProperty
+    [Object.defineProperty](https://www.cnblogs.com/ajianbeyourself/p/8962813.html)
+    let hero = {}
+    let val = 3000
+    Object.defineProperty(hero, 'health', {
+      get () {
+        console.log('我的health属性被读取了！')
+        return val
+      },
+      set (newVal) {
+        console.log('我的health属性被修改了！')
+        val = newVal
+      }
+    })
+    
+    // hero.health
+    // hero.health = 1
 
 ### 原理
     new Vue
@@ -173,3 +199,50 @@ export default {
 
 ### vue服务端渲染ssr
 
+
+### watch
+methods: {
+    fetchList(){
+        return list;
+    }
+}
+watch: {
+  a: function (val, oldVal) {
+    console.log('new a: %s, old: %s', val, oldVal)
+  },
+  
+  // 方法名
+  b: 'someMethod',
+  
+  // 深度 watcher
+  c: {
+    handler: function (val, oldVal) {
+      console.log('new c: %s, old: %s', val, oldVal)
+    },
+    deep: true
+  },
+  
+  // 该回调将会在侦听开始之后被立即调用
+  // 进入页面之前调用一次，监听项改变调用一次
+  d: {
+    //handler: function (val, oldVal) {
+    //  console.log('new d: %s, old: %s', val, oldVal)
+    //},
+    handler: 'fetchList',
+    immediate: true
+  }
+
+### vue debounce
+
+`
+    <Input  @on-change="inputChange"></Input>
+    searchFund() {
+        this.getData()
+    }
+
+    searchFundDebounce:_.debounce(function() {this.searchFund ()}, 200),
+
+    inputChange() {
+        this.searchFundDebounce();
+    },
+`
