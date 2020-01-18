@@ -1,8 +1,14 @@
 vue --version 
-vue create element-form
+
+// 创建项目 vu/cli
+vue create element-form   
+
+// 添加element
 vue add element
 
+// 添加router
 vue add router
+
 
 
 ### 原理
@@ -57,6 +63,8 @@ vue add router
         })
 
         3. this.$router.replace{path：‘/’ }
+
+     
 ### 二 导航守卫
     1. 全局守卫 main.js
     router.beforeEach    ------  常用
@@ -73,7 +81,31 @@ vue add router
     beforeRouteLeave
 
 
-### 三 生命周期
+### 三 emit
+
+`
+    子组件 
+
+   <button @click="minus(index)">-</button>
+    methods: {
+        minus(index){
+            this.$emit('removeItem', index)
+        }
+    }
+
+    父组件
+
+    <cart @removeItem="remove"></cart>
+
+    methods: {
+        remove(indxe){
+            this.coureItem.splice(index, 1)
+        }
+    }
+`
+
+
+### 四 生命周期
     beforeCreate
     created
     beforeMount
@@ -82,7 +114,7 @@ vue add router
     destroyed
 
 
-### 四 vuex
+### 五 vuex
 npm install vuex --save
 vue add vuex
 
@@ -100,6 +132,7 @@ import {mapState, mapActions} from 'vuex'
 export default {
     methods: {
         ...mapActions(['login']),
+        
         handleLogin(){
             this.login(model).then(
             )
