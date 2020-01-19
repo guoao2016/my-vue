@@ -5,6 +5,8 @@
 [data](https://www.cnblogs.com/DreamchaserHe/p/11765381.html)
 [源码解析](https://segmentfault.com/a/1190000015846104)
 
+[源码解析](https://juejin.im/post/5bae435b6fb9a05d0d287c13)
+
 [面试](https://segmentfault.com/a/1190000021407782)
 
 vue --version 
