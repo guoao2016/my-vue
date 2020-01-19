@@ -1,7 +1,4 @@
-
-
-
-
+vue add router
 
 
 # vue-router

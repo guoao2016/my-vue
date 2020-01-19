@@ -3,8 +3,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import PageA from '../views/PageA'
-// import PageB from '../views/PageB'
-// import PageC from '../views/PageC'
+import PageB from '../views/PageB'
+import PageC from '../views/PageC'
 import Test from '../views/Test'
 
 // 安装路由到vue
@@ -27,21 +27,21 @@ const routes = [
       david: Test
     }
   },
-  // {
-  //   path: '/b/:id',
-  //   component: PageB
-  // },
-  // {
-  //   path: '/c/:id',
-  //   props: true,
-  //   component: PageC,
-  //   children: [
-  //     {
-  //       path: 'test',
-  //       component: Test
-  //     }
-  //   ]
-  // }
+  {
+    path: '/b/:id',
+    component: PageB
+  },
+  {
+    path: '/c/:id',
+    props: true,
+    component: PageC,
+    children: [
+      {
+        path: 'test',
+        component: Test
+      }
+    ]
+  }
   
   
 ]

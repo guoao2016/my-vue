@@ -46,6 +46,7 @@ vue add router
 ### 一 router
     1. 基本路由配置
     `
+    const routes = [
         {
             path: '/a',
             name: 'pageA',
@@ -56,6 +57,13 @@ vue add router
             name: 'pageA',
             component:  pageA
         },
+
+    ]
+
+    export default new Router({
+        mode: 'history',
+        routes
+    })
 
       <router-link to="/a">A</router-link> 
       <router-link to="{name: 'pageA'}">A</router-link>
@@ -72,6 +80,8 @@ vue add router
             name: 'pageA',
             component:  () => import ('../views/About.vue')
         },
+
+
 
     3. 命名视图
      <router-view name = "david"/>
