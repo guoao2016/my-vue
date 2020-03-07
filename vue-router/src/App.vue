@@ -6,6 +6,7 @@
       <!-- <router-link :to="{name: 'pageA'}">A</router-link> | -->
       <router-link to="/b/123">B</router-link> | 
       <router-link to="/c/2019">C</router-link>
+      <router-link to="/asyncTest">C</router-link>
     </div>
     <router-view/>
     <router-view name = "david"/>

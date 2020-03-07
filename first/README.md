@@ -1,16 +1,4 @@
-
-// 创建项目 vu/cli
-vue create vue-router
-
-// 添加element
-vue add element
-
-// 添加router
-vue add router
-
-
-
-# vue-router
+# vue-mart
 
 ## Project setup
 ```

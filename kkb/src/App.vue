@@ -31,7 +31,8 @@
         </tr>
       </table>
     </div>
-    <cart :courseItem="courseItem" @removeItem="remove(index)"></cart>
+    <!-- <cart :courseItem="courseItem" @removeItem="remove(index)"></cart> -->
+    <cart></cart>
     <!-- <hello-world></hello-world> -->
   </div>
 </template>
@@ -39,7 +40,6 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import Cart from './components/Cart.vue'
-
 export default {
   name: 'app',
    components: {

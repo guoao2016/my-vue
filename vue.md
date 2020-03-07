@@ -7,6 +7,9 @@
 
 [面试](https://segmentfault.com/a/1190000021407782)
 
+[Vuex](https://juejin.im/post/5dba91e4518825647e4ef18b)
+[Vue中级面试题汇总](https://juejin.im/post/5d6e8969e51d45621512adcd)
+
 vue --version 
 
 // 创建项目 vu/cli
@@ -65,26 +68,39 @@ vue add router
         routes
     })
 
-      <router-link to="/a">A</router-link> 
-      <router-link to="{name: 'pageA'}">A</router-link>
-      <router-link to="/b/123">A</router-link> 
-      <router-view /> 
+    <router-link to="/a">A</router-link> 
+    <router-link to="{name: 'pageA'}">A</router-link>
+    <router-link to="/b/123">A</router-link> 
+    <router-view /> 
 
 
       this.$route.param.id
 
     `
     2. 异步组件(按需加载)
-      {
-            path: '/b/:id',
-            name: 'pageA',
-            component:  () => import ('../views/About.vue')
-        },
+    {
+        path: '/b/:id',
+        name: 'pageA',
+        component:  () => import ('../views/About.vue')
+    },
 
 
 
     3. 命名视图
-     <router-view name = "david"/>
+    {
+        path: '/a',
+        name: 'pageA',
+        components: {
+        default: PageA,
+        david: Test
+        }
+    },
+    // 默认PageA
+    
+    <router-view/>
+    // Test组件
+    <router-view name = "david"/> 
+
 
     4. 路由跳转方式
       1. router-link
@@ -100,6 +116,14 @@ vue add router
 
         3. this.$router.replace{path：‘/’ }
 
+        goTo(){
+                // this.$router.push({name: 'pageB', params: {id: this.id} })
+                this.$router.push({path: `/b/${this.id}` })
+
+                // params 不生效
+                // this.$router.push({path: '/pageB', params:{id: this.id} })
+            }
+
      
 ### 二 导航守卫
     1. 全局守卫 main.js
@@ -111,7 +135,7 @@ vue add router
     beforeEnter
 
     3. 组件内守卫
-    beforeRouteEnter
+    beforeRouteEnter    // 不能获取组件实例 this
     beforeRouteUpdate
       /a/123    ---  /a/456 触发
     beforeRouteLeave
@@ -256,3 +280,14 @@ watch: {
         this.searchFundDebounce();
     },
 `
+
+
+
+
+总结
+1. 核心
+2. 最佳实践：全家桶
+3. 组件设计
+4. 实现原理
+5. 框架
+6. 展望

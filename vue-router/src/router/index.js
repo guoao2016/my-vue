@@ -29,6 +29,7 @@ const routes = [
   },
   {
     path: '/b/:id',
+    props: true,
     component: PageB
   },
   {
@@ -41,6 +42,10 @@ const routes = [
         component: Test
       }
     ]
+  },
+  {
+    path: '/asyncTest',
+    component: () => import ('../views/AsyncTest')
   }
   
   
