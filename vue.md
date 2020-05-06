@@ -23,6 +23,9 @@ vue add element
 // 添加router
 vue add router
 
+// 添加vuex
+vue add vuex
+
 
 ### Object.defineProperty
     [Object.defineProperty](https://www.cnblogs.com/ajianbeyourself/p/8962813.html)
@@ -180,6 +183,7 @@ vue add router
 npm install vuex --save
 vue add vuex
 
+
 store
 mutations
 actions
@@ -187,11 +191,55 @@ actions
 mapActions  -- 映射
 getters
 
+dispatch
+
 
 mapState、 mapActions使用
-`
+
+```
+ state: {
+    count: 1,
+    todos: [
+        {id: 1, text: '11', done: true},
+        {id: 2, text: '22', done: false},
+        {id: 3, text: '33', done: true},
+    ]
+  },
+  getters: {
+      doneTodos: state => {
+          return state.todos.filter(todo => todo.done)
+      }
+  }
+
+  mutations: {
+    increment(state){
+      state.count++;
+    },
+    decrement(state){
+      state.count--;
+    }
+  },
+
+  actions:{
+    increment({commit}){
+      commit('increment')
+    },
+    decrement({commit}){
+      commit('decrement')
+    }
+  },
+
+
+
+{{$store.state.count}}
+
 import {mapState, mapActions} from 'vuex'
 export default {
+     computed: {
+        ...mapState(['isLogin']),
+        ...mapGetters(['doneTodos'])
+    },
+
     methods: {
         ...mapActions(['login']),
         
@@ -199,16 +247,11 @@ export default {
             this.login(model).then(
             )
         }
-    },
-    computed: {
-        ...mapState([
-            'isLogin',
-        ])
     }
+   
 }
-
+```
   
-`
 ### 跨域  (代理、CORS)
 
  devServer: {
@@ -242,6 +285,8 @@ methods: {
         return list;
     }
 }
+
+
 watch: {
   a: function (val, oldVal) {
     console.log('new a: %s, old: %s', val, oldVal)
@@ -284,6 +329,56 @@ watch: {
 `
 
 
+### 框架
+element
+cube-ui
+
+
+### 组件通信
+props $emit  
+$child
+$parent
+
+EventBus
+
+`
+
+methods: {  
+   addCart(event) {  
+   Bus.$emit('getTarget', event.target);   
+   }  
+}  
+
+created() {  
+    Bus.$on('getTarget', target => {  
+        console.log(target);  
+    });  
+}  
+`
+
+
+
+1）props / $emit  适用 父子组件通信
+这种方法是 Vue 组件的基础，相信大部分同学耳闻能详，所以此处就不举例展开介绍。
+（2）ref 与 $parent / $children 适用 父子组件通信
+
+ref：如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例
+$parent / $children：访问父 / 子实例
+
+（3）EventBus （$emit / $on）  适用于 父子、隔代、兄弟组件通信
+这种方法通过一个空的 Vue 实例作为中央事件总线（事件中心），用它来触发事件和监听事件，从而实现任何组件间的通信，包括父子、隔代、兄弟组件。
+（4）$attrs/$listeners 适用于 隔代组件通信
+
+$attrs：包含了父作用域中不被 prop 所识别 (且获取) 的特性绑定 ( class 和 style 除外 )。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 ( class 和 style 除外 )，并且可以通过 v-bind="$attrs" 传入内部组件。通常配合 inheritAttrs 选项一起使用。
+$listeners：包含了父作用域中的 (不含 .native 修饰器的)  v-on 事件监听器。它可以通过 v-on="$listeners" 传入内部组件
+
+（5）provide / inject 适用于 隔代组件通信
+祖先组件中通过 provider 来提供变量，然后在子孙组件中通过 inject 来注入变量。 provide / inject API 主要解决了跨级组件间的通信问题，不过它的使用场景，主要是子组件获取上级组件的状态，跨级组件间建立了一种主动提供与依赖注入的关系。
+（6）Vuex  适用于 父子、隔代、兄弟组件通信
+Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。每一个 Vuex 应用的核心就是 store（仓库）。“store” 基本上就是一个容器，它包含着你的应用中大部分的状态 ( state )。
+
+Vuex 的状态存储是响应式的。当 Vue 组件从 store 中读取状态的时候，若 store 中的状态发生变化，那么相应的组件也会相应地得到高效更新。
+改变 store 中的状态的唯一途径就是显式地提交  (commit) mutation。这样使得我们可以方便地跟踪每一个状态的变化。
 
 
 总结

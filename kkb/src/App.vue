@@ -31,21 +31,27 @@
         </tr>
       </table>
     </div>
-    <!-- <cart :courseItem="courseItem" @removeItem="remove(index)"></cart> -->
-    <cart></cart>
+    <cart :courseItem="courseItem" @removeItem="remove(index)"></cart>
+    <!-- <cart></cart> -->
     <!-- <hello-world></hello-world> -->
+    <test test1 = "12300"></test>
+    <button @click="addCart">event bus test</button>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import Cart from './components/Cart.vue'
+import Cart from './components/Cart'
+import Test from './components/Test'
+import Bus from './common/js/bus'
 export default {
   name: 'app',
    components: {
     // HelloWorld
-    Cart
+    Cart,
+    Test
   },
+  
   data () {
     return {
       title: '购物车',
@@ -69,7 +75,17 @@ export default {
       ]
     }
   },
+
+ 
+  mounted() {
+    this.myconsole(this.$children)
+  },
+
   methods: {
+    addCart(event){
+      Bus.$emit('getTarget', event.target)
+    },
+
     addCourseToList(){
       this.courseList.push(this.courseInfo)
     },

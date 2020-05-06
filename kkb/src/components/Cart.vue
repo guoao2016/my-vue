@@ -28,6 +28,9 @@
                 <td colspan="2">{{allPrice}}</td>
             </tr>
         </table>
+        <p>v-once</p>
+        <p v-once>{{a}}</p>
+        <p >{{a}}</p>
     </div>
      
 </template>
@@ -39,14 +42,43 @@
  * 2. 课程列表添加到购物车
  * 3 购物车展示，增减
  */
+
+import Bus from '../common/js/bus'
 export default{
     props: {
         'courseItem': Array
     },
+
+    data(){
+        return {
+            a: 1
+        }
+    },
+
+    created() {
+        Bus.$on('getTarget', target => {
+           this.myconsole(target)
+        })
+    },
+
+    mounted() {
+        this.myconsole(this.$parent._data.courseList[0].name)
+    },
+
+    wacth: {
+        courseItem:{
+            handler: function(){
+                window.console.log(this.courseItem)
+            },
+            immediate:true
+        }
+    },
+
     methods: {
         // 子组件可以直接操作数据，不推荐，单向数据流
         // 子组件emit
         minus(index){
+            this.a ++;
             let number = this.courseItem[index].number;
             if(number > 1){
                 this.courseItem[index].number -= 1;
@@ -60,6 +92,7 @@ export default{
             this.courseItem[index].number += 1;
         }
     },
+
     computed: {
         isActiveCourse() {
             return this.courseItem.filter( item => item.isActive).length;

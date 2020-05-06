@@ -1,5 +1,5 @@
 # vuex-test
-
+vue add vuex
 ## Project setup
 ```
 yarn install

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 export default {
     // methods: {
     //     add() {
@@ -29,6 +29,10 @@ export default {
     //     'increment',
     //     'decrement'
     // ])
+    computed: {
+        ...mapState(['count'])
+           
+    },
     methods: {
         ...mapActions([
             'increment',
