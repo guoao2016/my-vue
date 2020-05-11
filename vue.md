@@ -250,6 +250,25 @@ export default {
     }
    
 }
+
+export default {
+     computed: {
+        ...mapState('order', ['isLogin']),
+    },
+
+    methods: {
+        ...mapMutations('order',['setOrderNo']),
+        ...mapMutations('order',{'setOrderNo': 'myOrderNo'}),
+        ...mapActions(['login']),
+        
+        handleLogin(){
+            this.login(model).then(
+            )
+        }
+    }
+   
+}
+
 ```
   
 ### 跨域  (代理、CORS)
