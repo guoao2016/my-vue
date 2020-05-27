@@ -352,6 +352,10 @@ watch: {
 element
 cube-ui
 
+### 当使用动态路由或路由传参时，路由改变但是页面不刷新
+1. 使用watch 监听路由变化。手动更新数据。
+2. 使用<router-view :key="$route.fullPath" />
+
 
 ### 组件通信
 props $emit  
